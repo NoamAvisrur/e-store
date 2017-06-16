@@ -11,6 +11,15 @@ header {
     align-items: center;
     position: relative;
 }
+header > span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #965896;
+    position: absolute;
+    right: 1rem;
+    top: 0.7rem;
+    display: none;
+}
 .price_currency{
     position: absolute;
     top: 1rem;
@@ -109,10 +118,11 @@ button{
 .review_container{
     width: 90%;
     margin: 0 auto;
-    border: 1px solid #eee;
+    border: 1px solid #ddd;
     margin-top: 1rem;
-    padding: 1rem 0 1rem 0;
+    padding: 0.5rem;
     border-radius: 5px;
+    word-break: break-word;
 }
 .review_container .comment{
     font-style: italic;
