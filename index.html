@@ -1,33 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="newcss.css" rel="stylesheet" type="text/css"/>
-        <link href="Media_Queries.css" rel="stylesheet" type="text/css"/>
-    </head>
-    <body>
-        <header>
-           <div class="price_currency">
-               <span>Change price currency:<span>
-               <img title="Bolivian currency" src="img/bolivia.png" alt="bolivia currency">
-               <img title="Colombian currency" src="img/colombia.png" alt="colombia currency">
-               <img title="Peruvian currency" src="img/peru.png" alt="peru currency">
-               <img title="US dollars currency" src="img/usa.png" alt="usa currency">
+  <head>
+    <link href="maincss.css" rel="stylesheet" />
+  </head>
+  <body ng-app="store" ng-controller="StoreController as store" ng-cloak>
+    <header>
+        <button class="sort_name" ng-class="{ sort:store.sort === 'name'}" ng-click="store.sortByElement('name')">Sort By Name &#x25BC;</button>
+        <button class="sort_price" ng-class="{ sort:store.sort === 'price'}" ng-click="store.sortByElement('price')">Sort By Price &#x25BC;</button>
+        <button class="cart_button"><span class="counter">1<span></button>
+    </header>
+    <h1>{{ store.name }}</h1>
+    <div class="product" ng-repeat="product in store.products | orderBy : store.sort" ng-init="tab = 1">
+        <h1>{{ product.name}}</h1>
+        <img ng-click="store.scale(product.img)" ng-src="{{ product.img }}">
+        <ul class="nav">
+	    <li><button ng-class="{ active:tab === 1 }" ng-click="tab = 1">Price</button></li>
+            <li><button ng-class="{ active:tab === 2 }" ng-click="tab = 2">Specs</button></li>
+            <li><button ng-class="{ active:tab === 3 }" ng-click="tab = 3">Reviews</button></li>
+            <li><button id="add_to_cart_button">Add To Cart +</button></li>	
+        </ul>
+        <div class="panel" ng-show="tab === 1">
+            <h2>{{ product.price | currency }}</h2>
+        </div>
+        <div class="panel" ng-show="tab === 2">
+            <div ng-repeat="(key, value) in product.specs[0]">
+                 <span class="specs">{{key}}</span><span>{{value}}</span> 
             </div>
-            <span>&#9776;</span>
-            <div class="sort_view">
-                <button id="sort_price">Sort by price&#x25BC</button>
-                <button id="sort_rate">Sort by rating&#x25BC</button>
+        </div>
+        <div class="panel" ng-show="tab === 3" ng-controller='ReviewsController as review'>
+            <h3>Reviews:</h3>
+
+            <div class="review" ng-repeat="new in product.review">
+                <div>
+                    <span class="rate">{{new.rate}} Stars</span>
+                    <span> - "{{new.comment}}"</span>
+                    <span class="date">{{new.date}}</span>
+                </div>
             </div>
-        </header>
-        <h1>Our Products</h1>
-        <main></main>
-        <script src="lib/product.js" type="text/javascript"></script>
-        <script src="lib/price.js" type="text/javascript"></script>
-        <script src="lib/specs.js" type="text/javascript"></script>
-        <script src="lib/review.js" type="text/javascript"></script>
-        <script src="newjavascript.js" type="text/javascript"></script>
-    </body>
+
+             <div class="review preview" ng-show="review.comment.comment">
+                 <span ng-show="review.comment.rate">{{ review.comment.rate + "Stars"}} | </span><span>{{ review.comment.comment }}</span>
+             </div>
+             <h3 id="submit_review_title">submit your review:</h3>
+             <form name="reviewForm" ng-submit="reviewForm.$valid && review.push(product)" novalidate>
+                <input ng-model="review.comment.comment" type="text" placeholder=" Add a comment" required>
+                <select ng-model="review.comment.rate"  required>
+                    <option value="" disabled selected>Rate this product</option>
+                    <option value=5>5 stars</option>
+                    <option value=4>4 stars</option>
+                    <option value=3>3 stars</option>
+                    <option value=2>2 stars</option>
+                    <option value=1>1 star</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+    <script src="js/angular.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controllers/storeController.js"></script>
+    <script src="js/controllers/reviewController.js"></script>
+  </body>
 </html>
