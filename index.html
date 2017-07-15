@@ -1,23 +1,35 @@
 <!doctype html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link href="maincss.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="icon.png">
+    <title>E-Store</title>
   </head>
   <body ng-app="store" ng-controller="StoreController as store" ng-cloak>
     <header>
         <button class="sort_name" ng-class="{ sort:store.sort === 'name'}" ng-click="store.sortByElement('name')">Sort By Name &#x25BC;</button>
         <button class="sort_price" ng-class="{ sort:store.sort === 'price'}" ng-click="store.sortByElement('price')">Sort By Price &#x25BC;</button>
-        <button class="cart_button"><span class="counter">1<span></button>
+        <button class="cart_button"><span class="counter">{{ store.productsInCart.length }}<span></button>
     </header>
     <h1>{{ store.name }}</h1>
     <div class="product" ng-repeat="product in store.products | orderBy : store.sort" ng-init="tab = 1">
         <h1>{{ product.name}}</h1>
-        <img ng-click="store.scale(product.img)" ng-src="{{ product.img }}">
+        <div class="gallery" ng-controller="galleryController as gallery">
+            <div class="img-wrap">
+                <img class="main_img" ng-click="gallery.scale(product.images[gallery.i])" ng-src="{{product.images[gallery.i] }}">
+            </div>
+            <ul class="img-thumbnails clearfix">
+                <li class="small-image pull-left thumbnail" ng-repeat="image in product.images">
+                    <img class="thumb_img" ng-click="gallery.selectImg($index)" ng-src="{{ image }}" />
+                </li>
+            </ul>
+        </div>
         <ul class="nav">
 	    <li><button ng-class="{ active:tab === 1 }" ng-click="tab = 1">Price</button></li>
             <li><button ng-class="{ active:tab === 2 }" ng-click="tab = 2">Specs</button></li>
             <li><button ng-class="{ active:tab === 3 }" ng-click="tab = 3">Reviews</button></li>
-            <li><button id="add_to_cart_button">Add To Cart +</button></li>	
+            <li><button id="add_to_cart_button" ng-click="store.addToCart(product)">Add To Cart +</button></li>	
         </ul>
         <div class="panel" ng-show="tab === 1">
             <h2>{{ product.price | currency }}</h2>
@@ -34,7 +46,7 @@
                 <div>
                     <span class="rate">{{new.rate}} Stars</span>
                     <span> - "{{new.comment}}"</span>
-                    <span class="date">{{new.date}}</span>
+                    <span class="date">{{new.date | date:'dd/MM/yyyy'}}</span>
                 </div>
             </div>
 
@@ -60,5 +72,6 @@
     <script src="js/main.js"></script>
     <script src="js/controllers/storeController.js"></script>
     <script src="js/controllers/reviewController.js"></script>
+    <script src="js/controllers/galleryController.js"></script>
   </body>
 </html>

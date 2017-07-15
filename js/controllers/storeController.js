@@ -1,20 +1,38 @@
-app.controller('StoreController', function($http){
+app.controller('StoreController', function(DataService){
+    
     this.name = 'Our Producs';
 
-    $http.get("data/products.json")
-    .then(function(response) {
-        this.products = response.data;
-    }.bind(this));
+    this.items = 0;
     
-    this.tab = 1;
+    DataService.getServerData()
+		.then(function (data) {
+			this.products = data
+	}.bind(this))
 
     this.sort = 'name';
 
     this.sortByElement = function(element){
         this.sort = element;
     }
-   
-    this.scale = function(src){
-        scaleImg(src);
+    
+    this.productsInCart = DataService.productsInCart;
+    
+    this.addToCart = function(product){
+        console.log(product);
+        DataService.productsInCart.push(product);
+        console.log(DataService.productsInCart)
     }
+});
+
+app.service('DataService', function($http) {   
+		this.getServerData = function(){
+			return $http({
+				url: "data/products.json"
+			})
+			.then(function (response) {
+				return response.data;
+			});
+        }
+        
+        this.productsInCart = [];
 });

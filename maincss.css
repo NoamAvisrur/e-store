@@ -3,6 +3,7 @@ body {
     font-family: arial;
     color: #444;
     margin: 0px;
+    background-color: #f5f5f5;
 }
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -15,7 +16,8 @@ header{
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: #f5f4f4;
+    background-color: #283e4a;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.1), 0 2px 3px rgba(0,0,0,.2);
 }
 
 .cart_button {
@@ -52,13 +54,14 @@ header{
     margin-bottom: 2rem;
     box-shadow: 0 1px 1px rgba(0,0,0,0.3);
     border-radius: 5px;
+    background-color: #fff;
 }
 
 .product h1{
     background-color: #f5f4f4;
 }
-.product img{
-    height: 200px;
+.main_img{
+    height: 300px;
     cursor: pointer;
 }
 
@@ -83,6 +86,7 @@ button{
     outline: none;
     cursor: pointer;
     font-weight: bold;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.3);
 }
 
 #add_to_cart_button {
@@ -90,7 +94,7 @@ button{
 }
 
 .active {
-    background-color: #9b005d;
+    background-color: #0091ca;
 }
 
 .sort_price, .sort_name{
@@ -112,7 +116,17 @@ button{
     width: 450px;
     height: 30px;
     border-radius: 5px;
-    border: 1px solid #9b005d;
+    border: 1px solid #0091ca;
+}
+
+.thumb_img{
+    height: 70px;
+    opacity: 0.7;
+}
+
+.thumb_img:hover{
+    opacity: 1;
+    cursor: pointer;
 }
 
 select{
@@ -124,7 +138,7 @@ select{
     margin-bottom: 1rem;
     margin-top: 1rem;
     color: grey;
-    border: 1px solid #9b005d;
+    border: 1px solid #0091ca;
 }
 
 select option {
@@ -139,7 +153,7 @@ select option:first-child{
     color: #fff;
     display: block;
     margin: 0 auto;
-    background-color: #9b005d;
+    background-color: #0091ca;
     border: none;
     padding: 5px;
     width: 100px;
@@ -161,7 +175,7 @@ select option:first-child{
     width: 450px;
     margin: 0 auto;
     background-color: #eee;
-    border-left: 2px solid #9b005d;
+    border-left: 3px solid #FF5722;
     text-align: left;
     word-wrap: break-word;
     padding: 1rem;
@@ -205,4 +219,19 @@ select option:first-child{
     height: 2rem;
     width: 2rem;
     background-color: #FF5722;
+}
+
+@media screen and (max-width: 650px) {
+    .product, .panel input[type=text], select, .review{
+        width: 90%;
+    }
+    .product ul{
+        flex-wrap: wrap;
+    }
+    .main_img{
+        height: 200px;
+    }
+    header{
+        justify-content: flex-start;
+    }
 }

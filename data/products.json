@@ -6,7 +6,11 @@
 		"colombian": "876,386",
 		"peruvian": "981"
 	}],
-	"img": "img/iphone6.png",
+	"images": [
+		"img/iphone6.png",
+		"img/iphone6s-plus.png",
+		"img/iphone-6GREY.png"
+	],
 	"specs": [{
 		"Carrier": ": Unlocked",
 		"Style": ": Touch Screen",
@@ -23,7 +27,11 @@
 		"colombian": "354,657",
 		"peruvian": "397"
 	}],
-	"img": "img/samsung_galaxy.png",
+	"images": [
+		"img/samsung_galaxy.png",
+		"img/galaxys6-flyout-icon.png",
+		"img/samsung-galaxy-j1-nxt-prime.jpg"
+	],
 	"specs": [{
 		"Carrier": ": AT&T",
 		"Style": ": Bar",
@@ -40,7 +48,11 @@
 		"colombian": "2,019,498",
 		"peruvian": "2,260"
 	}],
-	"img": "img/lg_g6.jpg",
+	"images": [
+		"img/lg_g6.jpg",
+		"img/lg-g6-h870-32gb-ice-silver.jpg",
+		"img/diva_astro-black_on-shot_01-380x496.png"
+	],
 	"specs": [{
 		"Carrier": ": T-Mobile",
 		"Style": ": Bar",
@@ -57,7 +69,11 @@
 		"colombian": "574,468",
 		"peruvian": "643"
 	}],
-	"img": "img/sony_xperia.png",
+	"images": [
+		   "img/sony_xperia.png",
+		   "img/xperia_xa_white_front.png",
+		   "img/Sony_Xperia_XA_Black_Lrg1_en.png"
+	],
 	"specs": [{
 		"Carrier": ": T-Mobile",
 		"Style": ": Bar",
