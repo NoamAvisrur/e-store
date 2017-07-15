@@ -89,6 +89,10 @@ button{
     box-shadow: 0 1px 1px rgba(0,0,0,0.3);
 }
 
+.product button:hover, #add_to_cart_button:hover {
+    color: #283e4a
+}
+
 #add_to_cart_button {
     background-color: #FF5722;
 }
@@ -222,8 +226,11 @@ select option:first-child{
 }
 
 @media screen and (max-width: 650px) {
-    .product, .panel input[type=text], select, .review{
+    .product, .panel input[type=text], select{
         width: 90%;
+    }
+    .review{
+        width: 80%;
     }
     .product ul{
         flex-wrap: wrap;
@@ -231,7 +238,15 @@ select option:first-child{
     .main_img{
         height: 200px;
     }
+    .sort_price, .sort_name{
+        width: auto;
+    }
     header{
         justify-content: flex-start;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    .bg img{
+        width: 90%;
     }
 }
